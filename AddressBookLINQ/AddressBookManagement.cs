@@ -133,5 +133,21 @@ namespace AddressBookLINQ
             }
 
         }
+        //Sort name for given city
+        public void SortNameByCity()
+        {
+            Console.WriteLine("Enter name of the city");
+            string city = Console.ReadLine();
+            var result = dataTable.AsEnumerable().OrderBy(x => x.Field<string>("FirstName"))
+                .Where(x => x.Field<string>("City").Contains(city));
+            foreach (var contact in result)
+            {
+                foreach (var data in contact.ItemArray)
+                {
+                    Console.Write(data + " ");
+                }
+                Console.WriteLine("\n");
+            }
+        }
     }
 }
